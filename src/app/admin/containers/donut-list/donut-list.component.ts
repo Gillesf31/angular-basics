@@ -5,7 +5,16 @@ import {Donut} from "../../models/donut.model";
   selector: 'app-donut-list',
   template: `
     <div>
-      <app-donut-card *ngFor="let donut of donuts" [donut]="donut"></app-donut-card>
+      <ng-container *ngIf="donuts.length; else noDonuts">
+        <app-donut-card 
+          *ngFor="let donut of donuts; trackBy: trackById" 
+          [donut]="donut">
+        </app-donut-card>
+      </ng-container>
+
+      <ng-template #noDonuts>
+        <p>No donuts here...</p>
+      </ng-template>
     </div>
   `,
   styles: [
@@ -41,6 +50,10 @@ export class DonutListComponent implements OnInit {
         description: 'Chocolate drizzled with caramel.',
       }
     ];
+  }
+
+  trackById(index: number, value: Donut) {
+    return value.id;
   }
 
 }

@@ -23,7 +23,7 @@ import {Donut} from "../../models/donut.model";
   styles: [
     `
     .donut-card {
-         display: flex;
+        display: flex;
         align-items: center;
         background: #f7f7f7;
         border-radius: 5px;
