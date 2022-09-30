@@ -15,7 +15,22 @@ import {Donut} from "../../models/donut.model";
         class="donut-card-icon"
       />
       <div>
-        <p class="donut-card-name">{{ donut.name }}</p>
+        <p class="donut-card-name">
+          {{ donut.name }}
+          <ng-container [ngSwitch]="donut.promo"]>
+            <span *ngSwitchCase="'new'" class="donut-card-label">NEW</span>
+            <span *ngSwitchCase="'limited'" class="donut-card-label">LIMITED</span>
+            <span 
+              *ngSwitchDefault 
+              class="donut-card-label"
+              [ngStyle]="{
+                color: 'grey',
+                'border-color': 'grey',
+                'opacity': 0.8
+              }">
+              Nothing special...</span>
+          </ng-container>
+        </p>
         <p class="donut-card-price">{{ donut.price / 100 | currency: 'USD' }}</p>
       </div>
     </div>
@@ -35,6 +50,14 @@ import {Donut} from "../../models/donut.model";
         }
         &-name {
           font-size: 16px;
+        }
+        &-label {
+          border: 1px solid #c14583;
+          border-radius: 4px;
+          padding: 0 4px;
+          margin-left: 5px;
+          font-size: 12px;
+          color: #c14583;
         }
         &-price {
           font-size: 14 px;
