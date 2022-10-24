@@ -35,6 +35,11 @@ import { Component, OnInit } from '@angular/core';
         </label>
 
       </div>
+
+      <label for="">
+        <span>Description</span>
+        <textarea name="description" class="input input--textarea" ngModel></textarea>
+      </label>
       <!-- Debug purpose -->
       <pre>{{ form.value | json }}</pre>
     </form>
