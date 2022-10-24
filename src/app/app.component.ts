@@ -32,13 +32,6 @@ import { Component, OnInit } from '@angular/core';
     `,
   ],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   message!: string;
-
-  constructor() {}
-
-  ngOnInit() {
-    this.message = 'Hello World!';
-    console.log('Hello World!');
-  }
 }

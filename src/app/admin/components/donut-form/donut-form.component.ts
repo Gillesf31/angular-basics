@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
       <label>
         <span>Icon</span>
         <select name="icon" class="input input--select" ngModel>
-          <option *ngFor="let icon of icons" [ngValue]="icon"]>{{icon}}</option>
+          <option *ngFor="let icon of icons" [ngValue]="icon">{{icon}}</option>
         </select>
       </label>
       <label>
