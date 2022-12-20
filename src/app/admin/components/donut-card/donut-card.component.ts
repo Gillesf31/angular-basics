@@ -4,7 +4,7 @@ import {Donut} from "../../models/donut.model";
 @Component({
   selector: 'app-donut-card',
   template: `
-    <div class="donut-card" 
+    <div class="donut-card"
       [ngStyle]="{
         border: donut.promo ? '2px solid #eee': 'none'
       }"
@@ -20,8 +20,8 @@ import {Donut} from "../../models/donut.model";
           <ng-container [ngSwitch]="donut.promo"]>
             <span *ngSwitchCase="'new'" class="donut-card-label">NEW</span>
             <span *ngSwitchCase="'limited'" class="donut-card-label">LIMITED</span>
-            <span 
-              *ngSwitchDefault 
+            <span
+              *ngSwitchDefault
               class="donut-card-label"
               [ngStyle]="{
                 color: 'grey',
@@ -60,7 +60,7 @@ import {Donut} from "../../models/donut.model";
           color: #c14583;
         }
         &-price {
-          font-size: 14 px;
+          font-size: 14px;
           color: #c14583;
         }
         &-icon {
