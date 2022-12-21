@@ -58,8 +58,11 @@ import {NgForm} from "@angular/forms";
       <button type="submit" class="btn btn--green">Create</button>
       <button type="button" (click)="form.resetForm()" class="btn btn--grey">Reset Form</button>
 
+      <div class="donut-form-working" *ngIf="form.valid && form.submitted">
+        Working...
+      </div>
+
       <!-- Debug purpose -->
-      {{ form.submitted }}
       <pre>{{ form.value | json }}</pre>
     </form>
   `,
@@ -80,6 +83,11 @@ import {NgForm} from "@angular/forms";
               margin-bottom: 0;
             }
           }
+        }
+        &-working {
+          font-size: 12px;
+          font-style: italic;
+          margin: 10px 0;
         }
         &-error {
           font-size: 12px;
