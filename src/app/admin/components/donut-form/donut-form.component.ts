@@ -4,7 +4,7 @@ import {NgForm} from "@angular/forms";
 @Component({
   selector: 'app-donut-form',
   template: `
-    <form class="donut-form" (ngSubmit)="handleSubmit(form)"  #form="ngForm">
+    <form class="donut-form" (ngSubmit)="handleSubmit(form)" #form="ngForm">
       <label>
         <span>Name</span>
         <input type="text" name="name" class="input" required minlength="5" ngModel [ngModelOptions]="{ updateOn: 'blur'}" #name="ngModel">
@@ -56,8 +56,10 @@ import {NgForm} from "@angular/forms";
       </label>
 
       <button type="submit" class="btn btn--green">Create</button>
+      <button type="button" (click)="form.resetForm()" class="btn btn--grey">Reset Form</button>
 
       <!-- Debug purpose -->
+      {{ form.submitted }}
       <pre>{{ form.value | json }}</pre>
     </form>
   `,
