@@ -5,7 +5,7 @@ import {Donut} from "../models/donut.model";
   providedIn: 'root'
 })
 export class DonutService {
-  donuts: Donut[] = [
+  private donuts: Donut[] = [
     {
       id: 'y8z0As',
       name: 'Just Chocolate',
@@ -46,4 +46,12 @@ export class DonutService {
   ];
 
   constructor() { }
+
+  read(): Donut[] {
+    return this.donuts;
+  }
+
+  readOne(id: string): Donut {
+    return this.donuts.find(donut => donut.id === id) || {name: '', price: 0, icon: '', description: ''};
+  }
 }
