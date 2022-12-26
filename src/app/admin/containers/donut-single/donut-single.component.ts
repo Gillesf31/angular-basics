@@ -18,11 +18,10 @@ export class DonutSingleComponent implements OnInit {
   constructor(private readonly donutService: DonutService) { }
 
   ngOnInit(): void {
-    this.donut = this.donutService.readOne('y8z0As');
+    this.donut = this.donutService.readOne('xxx');
   }
 
   onCreate(donut: Donut) {
-    console.log(donut);
+    this.donutService.create(donut);
   }
-
 }

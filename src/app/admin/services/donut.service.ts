@@ -54,4 +54,9 @@ export class DonutService {
   readOne(id: string): Donut {
     return this.donuts.find(donut => donut.id === id) || {name: '', price: 0, icon: '', description: ''};
   }
+
+  create(payload: Donut): void {
+    this.donuts = [...this.donuts, payload];
+    console.warn('this.donuts', this.donuts);
+  }
 }

@@ -62,10 +62,6 @@ import {Donut} from "../../models/donut.model";
       <div class="donut-form-working" *ngIf="form.valid && form.submitted">
         Working...
       </div>
-
-      <!-- Debug purpose -->
-      <pre>{{ form.value | json }}</pre>
-      <pre>{{ donut | json }}</pre>
     </form>
   `,
   styles: [
