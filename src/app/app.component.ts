@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <div class="app">
       <header class="header">
-        <img src="/assets/img/logo.svg" alt="Ultimate Donutes" class="logo" />
+        <img src="/assets/img/logo.svg" alt="Ultimate Donuts" class="logo" />
       </header>
       <app-donut-single></app-donut-single>
     </div> `,

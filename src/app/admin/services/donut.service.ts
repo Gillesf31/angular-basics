@@ -59,4 +59,14 @@ export class DonutService {
     this.donuts = [...this.donuts, payload];
     console.warn('this.donuts', this.donuts);
   }
+
+  update(payload: Donut): void {
+    this.donuts = this.donuts.map(donut => {
+      if (donut.id === payload.id) {
+        return payload;
+      }
+      return donut;
+    })
+    console.warn('this.donuts', this.donuts);
+  }
 }
