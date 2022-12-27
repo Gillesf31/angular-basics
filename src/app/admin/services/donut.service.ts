@@ -69,4 +69,9 @@ export class DonutService {
     })
     console.warn('this.donuts', this.donuts);
   }
+
+  delete(payload: Donut): void {
+    this.donuts = this.donuts.filter(donut => donut.id !== payload.id);
+    console.warn('this.donuts', this.donuts);
+  }
 }
