@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   selector: 'app-donut-list',
   template: `
     <div>
-      <ng-container *ngIf="donuts.length; else noDonuts">
+      <ng-container *ngIf="donuts?.length; else noDonuts">
         <app-donut-card
           *ngFor="let donut of donuts; trackBy: trackById"
           [donut]="donut">

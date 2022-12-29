@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import {Donut} from "../models/donut.model";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+
+import {Observable, of, tap} from "rxjs";
+
+import {Donut} from "../models/donut.model";
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +15,12 @@ export class DonutService {
   constructor(private readonly httpClient: HttpClient) { }
 
   read(): Observable<Donut[]> {
-    return this.httpClient.get<Donut[]>(`/api/donuts`)
-    // return this.donuts;
+    if (this.donuts.length) {
+      return of(this.donuts);
+    }
+    return this.httpClient.get<Donut[]>(`/api/donuts`).pipe(
+      tap(donuts => this.donuts = donuts)
+    )
   }
 
   /*
