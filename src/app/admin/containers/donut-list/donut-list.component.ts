@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Donut} from "../../models/donut.model";
 import {DonutService} from "../../services/donut.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-donut-list',
@@ -27,7 +28,7 @@ export class DonutListComponent implements OnInit {
   constructor(private readonly donutService: DonutService) { }
 
   ngOnInit(): void {
-    this.donuts = this.donutService.read();
+    this.donutService.read().subscribe(donuts => this.donuts = donuts);
   }
 
   trackById(index: number, value: Donut) {

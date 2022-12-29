@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Donut} from "../models/donut.model";
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -7,19 +9,21 @@ import {Donut} from "../models/donut.model";
 export class DonutService {
   private donuts: Donut[] = [];
 
-  constructor() { }
+  constructor(private readonly httpClient: HttpClient) { }
 
-  read(): Donut[] {
-    return this.donuts;
+  read(): Observable<Donut[]> {
+    return this.httpClient.get<Donut[]>(`/api/donuts`)
+    // return this.donuts;
   }
 
+  /*
   readOne(id: string): Donut {
     return this.donuts.find(donut => donut.id === id) || {name: '', price: 0, icon: '', description: ''};
   }
+  */
 
   create(payload: Donut): void {
     this.donuts = [...this.donuts, payload];
-    console.warn('this.donuts', this.donuts);
   }
 
   update(payload: Donut): void {
@@ -29,11 +33,9 @@ export class DonutService {
       }
       return donut;
     })
-    console.warn('this.donuts', this.donuts);
   }
 
   delete(payload: Donut): void {
     this.donuts = this.donuts.filter(donut => donut.id !== payload.id);
-    console.warn('this.donuts', this.donuts);
   }
 }
