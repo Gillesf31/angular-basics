@@ -29,8 +29,10 @@ export class DonutService {
     )
   }
 
-  create(payload: Donut): void {
-    this.donuts = [...this.donuts, payload];
+  create(payload: Donut): Observable<Donut> {
+    return this.httpClient.post<Donut>(`api/donuts`, payload).pipe(
+      tap((donut: Donut) => this.donuts = [...this.donuts, donut])
+    );
   }
 
   update(payload: Donut): void {

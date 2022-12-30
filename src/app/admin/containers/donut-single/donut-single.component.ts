@@ -23,14 +23,14 @@ export class DonutSingleComponent implements OnInit {
   constructor(private readonly donutService: DonutService) { }
 
   ngOnInit(): void {
-    this.donutService.readOne('y8z0As').subscribe((donut: any) => {
+    this.donutService.readOne('xxx').subscribe((donut: any) => {
       console.warn(donut);
       this.donut = donut
     });
   }
 
   onCreate(donut: Donut): void {
-    this.donutService.create(donut);
+    this.donutService.create(donut).subscribe();
   }
 
   onUpdate(donut: Donut): void {
