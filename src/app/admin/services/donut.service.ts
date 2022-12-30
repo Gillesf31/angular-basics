@@ -43,7 +43,11 @@ export class DonutService {
     );
   }
 
-  delete(payload: Donut): void {
-    this.donuts = this.donuts.filter(donut => donut.id !== payload.id);
+  delete(payload: Donut): Observable<Donut> {
+    return this.httpClient.delete<Donut>(`api/donuts/${payload.id}`).pipe(
+      tap(() => {
+        this.donuts = this.donuts.filter(donut => donut.id !== payload.id);
+      })
+    )
   }
 }

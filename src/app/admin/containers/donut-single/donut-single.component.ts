@@ -37,6 +37,6 @@ export class DonutSingleComponent implements OnInit {
   }
 
   onDelete(donut: Donut): void {
-    this.donutService.delete(donut);
+    this.donutService.delete(donut).subscribe();
   }
 }
