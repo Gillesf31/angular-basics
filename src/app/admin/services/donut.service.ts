@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 
-import {find, flatMap, map, mapTo, Observable, of, reduce, tap} from "rxjs";
+import {catchError, find, flatMap, map, mapTo, Observable, of, reduce, tap, throwError} from "rxjs";
 
 import {Donut} from "../models/donut.model";
 
@@ -19,7 +19,8 @@ export class DonutService {
       return of(this.donuts);
     }
     return this.httpClient.get<Donut[]>(`/api/donuts`).pipe(
-      tap(donuts => this.donuts = donuts)
+      tap(donuts => this.donuts = donuts),
+      catchError(this.handleError)
     )
   }
 
@@ -31,7 +32,8 @@ export class DonutService {
 
   create(payload: Donut): Observable<Donut> {
     return this.httpClient.post<Donut>(`api/donuts`, payload).pipe(
-      tap((donut: Donut) => this.donuts = [...this.donuts, donut])
+      tap((donut: Donut) => this.donuts = [...this.donuts, donut]),
+      catchError(this.handleError)
     );
   }
 
@@ -39,7 +41,8 @@ export class DonutService {
     return this.httpClient.put<Donut>(`api/donuts/${payload.id}`, payload).pipe(
       tap((updatedDonut: Donut) => {
         this.donuts = this.donuts.map(donut => donut.id === updatedDonut.id ? updatedDonut : donut);
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -47,7 +50,19 @@ export class DonutService {
     return this.httpClient.delete<Donut>(`api/donuts/${payload.id}`).pipe(
       tap(() => {
         this.donuts = this.donuts.filter(donut => donut.id !== payload.id);
-      })
+      }),
+      catchError(this.handleError)
     )
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    if (err.error instanceof ErrorEvent) {
+      // client-side
+      console.warn('Client ', err.message);
+    } else {
+      // server-side
+      console.warn('Server ', err.status);
+    }
+    return throwError(() => new Error(err.message));
   }
 }
