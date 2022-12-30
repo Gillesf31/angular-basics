@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 
-import {catchError, find, flatMap, map, mapTo, Observable, of, reduce, retry, tap, throwError} from "rxjs";
+import {catchError, map, Observable, of, retry, retryWhen, tap, throwError} from "rxjs";
 
 import {Donut} from "../models/donut.model";
 
@@ -20,7 +20,7 @@ export class DonutService {
     }
     return this.httpClient.get<Donut[]>(`/api/donuts`).pipe(
       tap(donuts => this.donuts = donuts),
-      retry(2),
+      retry({delay: 5000, count: 3}),
       catchError(this.handleError)
     )
   }
