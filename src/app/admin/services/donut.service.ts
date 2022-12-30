@@ -35,13 +35,12 @@ export class DonutService {
     );
   }
 
-  update(payload: Donut): void {
-    this.donuts = this.donuts.map(donut => {
-      if (donut.id === payload.id) {
-        return payload;
-      }
-      return donut;
-    })
+  update(payload: Donut): Observable<Donut> {
+    return this.httpClient.put<Donut>(`api/donuts/${payload.id}`, payload).pipe(
+      tap((updatedDonut: Donut) => {
+        this.donuts = this.donuts.map(donut => donut.id === updatedDonut.id ? updatedDonut : donut);
+      })
+    );
   }
 
   delete(payload: Donut): void {
