@@ -14,7 +14,14 @@ export const routes: Routes = [
     children: [
       { path: 'donuts', component: DonutListComponent },
       { path: 'donut', component: DonutSingleComponent },
-    ]},
+      { path: '', pathMatch: 'full', redirectTo: 'donuts' },
+    ]
+  },
+  {
+    path: '',
+    redirectTo: 'admin',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
