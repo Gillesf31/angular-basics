@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpContext, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 
 import {catchError, map, Observable, of, retry, retryWhen, tap, throwError} from "rxjs";
 
@@ -18,7 +18,14 @@ export class DonutService {
     if (this.donuts.length) {
       return of(this.donuts);
     }
-    return this.httpClient.get<Donut[]>(`/api/donuts`).pipe(
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    })
+
+    headers = headers.append('Api-Token', '1234567890');
+
+    return this.httpClient.get<Donut[]>(`/api/donuts`, {headers}).pipe(
       tap(donuts => this.donuts = donuts),
       retry({delay: 5000, count: 3}),
       catchError(this.handleError)
