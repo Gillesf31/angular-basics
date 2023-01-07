@@ -4,8 +4,9 @@ import {Donut} from "../../models/donut.model";
 @Component({
   selector: 'app-donut-card',
   template: `
-    <div class="donut-card"
-      [ngStyle]="{
+    <a class="donut-card"
+       [routerLink]="donut.id"
+       [ngStyle]="{
         border: donut.promo ? '2px solid #eee': 'none'
       }"
       >
@@ -33,7 +34,7 @@ import {Donut} from "../../models/donut.model";
         </p>
         <p class="donut-card-price">{{ donut.price / 100 | currency: 'USD' }}</p>
       </div>
-    </div>
+    </a>
   `,
   styles: [
     `

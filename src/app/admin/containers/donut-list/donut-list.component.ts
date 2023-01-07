@@ -7,6 +7,12 @@ import {Observable} from "rxjs";
   selector: 'app-donut-list',
   template: `
     <div>
+      <div class="donut-list-action">
+        <a routerLink="new" class="btn btn--green">
+          New Donut
+          <img src="/assets/img/icon/plus.svg" />
+        </a>
+      </div>
       <ng-container *ngIf="donuts?.length; else noDonuts">
         <app-donut-card
           *ngFor="let donut of donuts; trackBy: trackById"
@@ -20,6 +26,11 @@ import {Observable} from "rxjs";
     </div>
   `,
   styles: [
+    `.donut-list {
+      &-action {
+        margin-bottom: 10px;
+      }
+    }`
   ]
 })
 export class DonutListComponent implements OnInit {

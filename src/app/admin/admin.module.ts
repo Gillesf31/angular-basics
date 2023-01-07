@@ -21,7 +21,7 @@ import {DonutService} from "./services/donut.service";
 
 const routes: Routes = [
   { path: 'donuts', component: DonutListComponent },
-  { path: 'donut', component: DonutSingleComponent },
+  { path: 'donuts/new', component: DonutSingleComponent },
   { path: '', pathMatch: 'full', redirectTo: 'donuts' },
 ];
 
